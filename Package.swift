@@ -1,10 +1,10 @@
 // swift-tools-version: 5.9
-// Detroit Swift Community - Automotive Utilities Package
+// Detroit Swift Community - Advanced Automotive & AI Framework
 
 import PackageDescription
 
 let package = Package(
-    name: "DetroitSwiftCommunity",
+    name: "DetroitTechEquity",
     platforms: [
         .iOS(.v15),
         .macOS(.v12),
@@ -12,15 +12,10 @@ let package = Package(
         .tvOS(.v15)
     ],
     products: [
-        .library(
-            name: "AutomotiveKit",
-            targets: ["AutomotiveKit"]),
-        .library(
-            name: "MobilityFramework", 
-            targets: ["MobilityFramework"]),
-        .library(
-            name: "DetroitUtilities",
-            targets: ["DetroitUtilities"])
+        .library(name: "AutomotiveKit", targets: ["AutomotiveKit"]),
+        .library(name: "MobilityFramework", targets: ["MobilityFramework"]),
+        .library(name: "DetroitUtilities", targets: ["DetroitUtilities"]),
+        .library(name: "AdvancedAutomotive", targets: ["AdvancedAutomotive"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-algorithms", from: "1.0.0"),
@@ -29,9 +24,7 @@ let package = Package(
     targets: [
         .target(
             name: "AutomotiveKit",
-            dependencies: [
-                .product(name: "Algorithms", package: "swift-algorithms")
-            ],
+            dependencies: [.product(name: "Algorithms", package: "swift-algorithms")],
             path: "Sources/AutomotiveKit"
         ),
         .target(
@@ -41,18 +34,17 @@ let package = Package(
         ),
         .target(
             name: "DetroitUtilities",
-            dependencies: [
-                .product(name: "Vapor", package: "vapor")
-            ],
+            dependencies: [.product(name: "Vapor", package: "vapor")],
             path: "Sources/DetroitUtilities"
         ),
+        .target(
+            name: "AdvancedAutomotive",
+            dependencies: ["AutomotiveKit", "DetroitUtilities"],
+            path: "Sources/AdvancedAutomotive"
+        ),
         .testTarget(
-            name: "DetroitSwiftCommunityTests",
-            dependencies: [
-                "AutomotiveKit",
-                "MobilityFramework", 
-                "DetroitUtilities"
-            ]
+            name: "DetroitTechEquityTests",
+            dependencies: ["AutomotiveKit", "MobilityFramework", "DetroitUtilities", "AdvancedAutomotive"]
         )
     ]
 )
